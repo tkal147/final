@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Classes Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">Teacher Detail</h4>
+		<a class="btn btn-outline-primary" href="{{ path('teacher_index') }}">Teacher</a>
+		<table class="table table-striped mt-3  text-center">
+			<thead>
+				<tr>
+					<th>Name</th>
+
+					<th>Age</th>
+					<th>Location</th>
+					<th>Class</th>
+					<th>Manage</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ teacher.name }}</td>
+
+					<td>{{ teacher.age }}</td>
+					<td>{{ teacher.Location }}</td>
+					<td>
+						{% for b in teacher.courses %}
+							<a href="{{ path('classes_detail', {'id': b.id }) }}">
+								{{ b.name }}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('teacher_delete', {'id': teacher.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">
+								DELETE</a>
+						</td>
+					{% endif %}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

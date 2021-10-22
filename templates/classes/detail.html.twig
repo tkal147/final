@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Classes Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">Classes Detail</h4>
+		<a class="btn btn-outline-primary" href="{{ path('course_index') }}">Classes</a>
+		<table class="table table-striped mt-3  text-center">
+			<thead>
+				<tr>
+					<th>Name</th>
+
+					<th>Description</th>
+					<th>Manage</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ class.name }}</td>
+
+					<td>{{ class.description }}</td>
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							<a class="btn btn-primary" href="{{ path('classes_edit', {'id': class.id }) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('classes_delete', {'id': class.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">
+								DELETE</a>
+						</td>
+					{% endif %}
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

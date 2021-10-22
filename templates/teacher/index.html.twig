@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TeacherController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4>Class</h4>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a class="btn btn-outline-primary" href="{{ path('teacher_add') }}">ADD teacher</a>
+
+		{% endif %}
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">Name</th>
+					<th scope="col">Age</th>
+					<th scope="col">Location</th>
+					{% if is_granted('ROLE_ADMIN') %}
+						<th scope="col">Manage</th>
+					{% endif %}
+
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in teacher %}
+					<tr>
+
+						<td>{{c.id}}</td>
+						<td>{{c.name}}</td>
+						<td>{{c.age}}</td>
+						<td>{{c.Location}}</td>
+						{% if is_granted('ROLE_ADMIN') %}
+							<td>
+								<a href="{{path('teacher_detail',{'id': c.id})}}" class="btn btn-success">detail</a>
+								<a href="{{path('teacher_edit',{'id': c.id})}}" class="btn btn-success">Edit</a>
+								<a href="{{path('teacher_delete',{'id': c.id})}}" class="btn btn-success">Delete</a>
+							</td>
+						{% endif %}
+
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

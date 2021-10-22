@@ -1,19 +1,81 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
-           and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}
+				Library Management System
+			{% endblock %}
+		</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
+		{# Run composer require symfony/webpack-encore-bundle
+																				           and uncomment the following Encore helpers to start using Symfony UX #}
+		{% block stylesheets %}
+			<!-- CSS only -->
+			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+		{% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}
+			<!-- JavaScript Bundle with Popper -->
+			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+		{% endblock %}
+	</head>
+	<style>
+		h3 {
+			font-family: 'Qahiri', sans-serif;
+		}
+	</style>
+	<body>
+		<header>
+			<div class="container" style="display:flex; justify-content:center;">
+				<img src="https://ap.greenwich.edu.vn/FGW_logo_d.jpg" alt="" style="height:10vh">
+			</div>
+		</header>
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container">
+
+
+				<h3>FPT</h3>
+
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('student_index') }}">Students</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('teacher_index') }}">Teachers</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('course_index') }}">Courses</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('classes_index') }}">Classes</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_logout') }}">Log out</a>
+						</li>
+
+					</ul>
+				</div>
+
+
+			</div>
+		</nav>
+		{# tạo 1 section để hiển thị thông báo Flash gửi từ back-end (Controller) #}
+		<div class="container col-md-6 mt-3">
+
+			{% for message in app.flashes('Error') %}
+				<p class="alert alert-danger">{{ message }}</p>
+			{% endfor %}
+			{% for message in app.flashes('Success') %}
+				<p class="alert alert-primary">{{ message }}</p>
+			{% endfor %}
+		</div>
+		{% block body %}{% endblock %}
+	</body>
 </html>

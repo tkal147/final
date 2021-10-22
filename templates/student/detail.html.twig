@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Author Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">Student Detail</h4>
+		<a class="btn btn-outline-primary" href="{{ path('student_index') }}">Student LIST</a>
+		<table class="table table-striped mt-3  text-center">
+			<thead>
+				<tr>
+					<th>Name</th>
+
+					<th>Phone</th>
+					<th>Avatar</th>
+					<th>Course</th>
+					<th>Classes</th>
+					{% if is_granted('ROLE_ADMIN') %}
+						<th scope="col">Manage</th>
+					{% endif %}
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ student.Name }}</td>
+
+					<td>{{ student.phone }}</td>
+					<td>
+						<img src="{{ asset('image/book/'~student.avatar) }}" width="100" height="120" alt="avatar">
+					</td>
+					<td>
+						{% for b in student.course %}
+							<a href="{{ path('classes_detail', {'id': b.id }) }}">
+								{{ b.name }}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+					<td>
+						{% for m in student.classes %}
+							<a href="{{ path('course_detail', {'id': m.id }) }}">
+								{{ m.name }}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('student_delete', {'id': student.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">
+								DELETE</a>
+						</td>
+					{% endif %}
+
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

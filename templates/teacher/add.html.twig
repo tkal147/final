@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Add Teacher
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-3">
+		<h2 class="container mt-2">ADD Teacher</h2>
+		<div class="col-md-6">
+			{{ form_start (form) }}
+			<div class="form-group">
+				{{ form_label (form.name) }}
+				{{ form_widget (form.name,
+                {
+                    'attr' :{'class' : 'form-control'}
+                }) }}
+			</div>
+			<div class="form-group">
+				{{ form_label (form.age) }}
+				{{ form_widget (form.age,
+                {
+                    'attr' :{'class' : 'form-control'}
+                }) }}
+			</div>
+			<div class="form-group">
+				<label for="">Location</label>
+				{{ form_widget (form.Location,
+                {
+                    'attr' :{'class' : 'form-control'}
+                }) }}
+			</div>
+
+		</div>
+		<div class="form-group">
+			{{ form_label (form.courses) }} 
+			{{ form_widget (form.courses,
+               {
+                  'attr' : {'class' : 'form-control ml-3'}
+               })
+            }}
+		</div>
+
+
+		<div class="form-group text-center mt-3">
+			<button class="btn btn-primary" type="submit">ADD</button>
+		</div>
+		{{ form_end (form) }}
+	</div>
+</div>{% endblock %}
