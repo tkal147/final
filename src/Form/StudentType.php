@@ -29,7 +29,7 @@ class StudentType extends AbstractType
                 'phone',
                 TextType::class,
                 [
-                    'label' => "phone",
+                    'label' => "Phone",
                     'required' => true
                 ]
             )
@@ -57,7 +57,7 @@ class StudentType extends AbstractType
                 'course',
                 EntityType::class,
                 [
-                    'label' => "Class",
+                    'label' => "Course",
                     'class' => Course::class,
                     'choice_label' => "name",   //show Author name in drop-down list
                     'multiple' => false,        //true: select many, false: select one
