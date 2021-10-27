@@ -30,9 +30,9 @@
 						<td>{{c.description}}</td>
 						{% if is_granted('ROLE_ADMIN') %}
 							<td>
-								<a href="{{path('classes_detail',{'id': c.id})}}" class="btn btn-success">detail</a>
-								<a href="{{path('classes_edit',{'id': c.id})}}" class="btn btn-success">Edit</a>
-								<a href="{{path('classes_delete',{'id': c.id})}}" class="btn btn-success">Delete</a>
+								<a href="{{path('classes_detail',{'id': c.id})}}" class="btn btn-info">detail</a>
+								<a href="{{path('classes_edit',{'id': c.id})}}" class="btn btn-primary">Edit</a>
+								<a href="{{path('classes_delete',{'id': c.id})}}" class="btn btn-warning">Delete</a>
 							</td>
 						{% endif %}
 

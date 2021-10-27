@@ -33,9 +33,9 @@
 					</td>
 					
 					
-					<td><a href="{{ path('classes_detail', {'id': student.course.id }) }}">{{ student.course.name }}</a></td>
+					<td><a href="{{ path('course_detail', {'id': student.course.id }) }}">{{ student.course.name }}</a></td>
 					<td>
-						<a href="{{ path('classes_detail', {'id': student.course.id }) }}">{{ student.classes.name }}</a>
+						<a href="{{ path('classes_detail', {'id': student.classes.id }) }}">{{ student.classes.name }}</a>
 					</td>
 					
 					{% if is_granted('ROLE_ADMIN') %}

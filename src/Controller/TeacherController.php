@@ -70,6 +70,24 @@ class TeacherController extends AbstractController
         $form = $this->createForm(TeacherType::class, $course);
         $form->handleRequest($r);
         if ($form->isSubmitted() && $form->isValid()) {
+            $avatar = $course->getAvatar();
+            //B2: Dat ten moi cho anh
+            $imgName = uniqid();
+            //B3: lay duoi anh
+            $imgExtension = $avatar->guessExtension();
+            //B4: noi ten va duoi tao thanh 1 file anh hoan chinh
+            $imageName = $imgName . "." . $imgExtension;
+            //B5: di chuyen vao thu muc chi dinh
+            
+            try {
+                $avatar->move(
+                    $this->getParameter('teacher_avatar'),
+                    $imageName
+                );
+            } catch (FileException $e) {
+                throwException($e);
+            }
+            $course->setAvatar($imageName);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($course);
             $manager->flush();
@@ -104,7 +122,7 @@ class TeacherController extends AbstractController
             
             try {
                 $avatar->move(
-                    $this->getParameter('student_avatar'),
+                    $this->getParameter('teacher_avatar'),
                     $imageName
                 );
             } catch (FileException $e) {

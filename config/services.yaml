@@ -5,6 +5,7 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     student_avatar: '%kernel.project_dir%/public/image/book'
+    teacher_avatar: '%kernel.project_dir%/public/image/book'
 services:
     # default configuration for services in *this* file
     _defaults:
