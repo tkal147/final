@@ -39,6 +39,11 @@ class Teacher
      */
     private $courses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Avatar;
+
     public function __construct()
     {
         $this->courses = new ArrayCollection();
@@ -105,6 +110,18 @@ class Teacher
     public function removeCourse(Course $course): self
     {
         $this->courses->removeElement($course);
+
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->Avatar;
+    }
+
+    public function setAvatar($Avatar): self
+    {
+        $this->Avatar = $Avatar;
 
         return $this;
     }

@@ -10,13 +10,15 @@
 			<a class="btn btn-outline-primary" href="{{ path('classes_add') }}">ADD Class</a>
 		{% endif %}
 
-		<table class="table table-dark">
+		<table class="table  table-striped">
 			<thead>
 				<tr>
 					<th scope="col">Id</th>
 					<th scope="col">Name</th>
 					<th scope="col">Description</th>
-					<th scope="col">Manage</th>
+					{% if is_granted('ROLE_ADMIN') %}
+						<th scope="col">Manage</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>

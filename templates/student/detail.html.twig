@@ -31,22 +31,13 @@
 					<td>
 						<img src="{{ asset('image/book/'~student.avatar) }}" width="100" height="120" alt="avatar">
 					</td>
+					
+					
+					<td><a href="{{ path('classes_detail', {'id': student.course.id }) }}">{{ student.course.name }}</a></td>
 					<td>
-						{% for b in student.course %}
-							<a href="{{ path('classes_detail', {'id': b.id }) }}">
-								{{ b.name }}
-							</a>
-							<br>
-						{% endfor %}
+						<a href="{{ path('classes_detail', {'id': student.course.id }) }}">{{ student.classes.name }}</a>
 					</td>
-					<td>
-						{% for m in student.classes %}
-							<a href="{{ path('course_detail', {'id': m.id }) }}">
-								{{ m.name }}
-							</a>
-							<br>
-						{% endfor %}
-					</td>
+					
 					{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-primary" href="{{ path('student_edit', {'id': student.id }) }}">EDIT</a>

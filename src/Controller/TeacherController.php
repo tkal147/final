@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
+use function PHPUnit\Framework\throwException;
 
 /**
  * @IsGranted("ROLE_USER")
@@ -86,14 +89,32 @@ class TeacherController extends AbstractController
     #[Route('/teacher/edit/{id}', name: 'teacher_edit')]
     public function EditCourse(Request $r, int $id)
     {
-        $course = $this->getDoctrine()->getRepository(Teacher::class)->find($id);
-        $form = $this->createForm(TeacherType::class, $course);
+        $teacher = $this->getDoctrine()->getRepository(Teacher::class)->find($id);
+        $form = $this->createForm(TeacherType::class, $teacher);
         $form->handleRequest($r);
         if ($form->isSubmitted() && $form->isValid()) {
+            $avatar = $teacher->getAvatar();
+            //B2: Dat ten moi cho anh
+            $imgName = uniqid();
+            //B3: lay duoi anh
+            $imgExtension = $avatar->guessExtension();
+            //B4: noi ten va duoi tao thanh 1 file anh hoan chinh
+            $imageName = $imgName . "." . $imgExtension;
+            //B5: di chuyen vao thu muc chi dinh
+            
+            try {
+                $avatar->move(
+                    $this->getParameter('student_avatar'),
+                    $imageName
+                );
+            } catch (FileException $e) {
+                throwException($e);
+            }
+            $teacher->setAvatar($imageName);
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($course);
+            $manager->persist($teacher);
             $manager->flush();
-            $this->addFlash('Success', "Add new teacher successfully");
+            $this->addFlash('Success', "Edit new teacher successfully");
             return $this->redirectToRoute("teacher_index");
         }
         return $this->render(

@@ -33,14 +33,20 @@
 
 		</div>
 		<div class="form-group">
-			{{ form_label (form.courses) }} 
+			{{ form_label (form.courses) }}
 			{{ form_widget (form.courses,
                {
                   'attr' : {'class' : 'form-control ml-3'}
                })
             }}
 		</div>
-
+		<div class="form-group">
+			{{ form_label (form.Avatar) }}
+			{{ form_widget (form.Avatar,
+                {
+                    'attr' :{'class' : 'form-control'}
+                }) }}
+		</div>
 
 		<div class="form-group text-center mt-3">
 			<button class="btn btn-primary" type="submit">ADD</button>

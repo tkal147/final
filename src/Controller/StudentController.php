@@ -37,8 +37,8 @@ class StudentController extends AbstractController
     {
         $student = $this->getDoctrine()->getRepository(Student::class)->find($id);
         if ($student == null) {
-            $this->addFlash('Error', 'Author is not existed');
-            return $this->redirectToRoute('author_index');
+            $this->addFlash('Error', 'student is not existed');
+            return $this->redirectToRoute('student_index');
         } else {  
             return $this->render(
                 'student/detail.html.twig',

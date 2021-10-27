@@ -16,7 +16,9 @@
 					<th>Age</th>
 					<th>Location</th>
 					<th>Class</th>
+					<th>Avatar</th>
 					<th>Manage</th>
+					
 				</tr>
 			</thead>
 			<tbody>
@@ -33,7 +35,9 @@
 							<br>
 						{% endfor %}
 					</td>
-
+					<td>
+						<img src="{{ asset('image/book/'~teacher.Avatar) }}" width="100" height="120" alt="avatar">
+					</td>
 					{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-primary" href="{{ path('teacher_edit', {'id': teacher.id }) }}">EDIT</a>
