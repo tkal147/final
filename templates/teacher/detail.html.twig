@@ -15,7 +15,7 @@
 
 					<th>Age</th>
 					<th>Location</th>
-					<th>Class</th>
+					<th>Course</th>
 					<th>Avatar</th>
 					<th>Manage</th>
 					
@@ -29,7 +29,7 @@
 					<td>{{ teacher.Location }}</td>
 					<td>
 						{% for b in teacher.courses %}
-							<a href="{{ path('classes_detail', {'id': b.id }) }}">
+							<a href="{{ path('course_detail', {'id': b.id }) }}">
 								{{ b.name }}
 							</a>
 							<br>

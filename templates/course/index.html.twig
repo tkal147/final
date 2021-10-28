@@ -33,7 +33,7 @@
 							<td>
 								<a href="{{path('course_detail',{'id': c.id})}}" class="btn btn-info">Detail</a>
 								<a href="{{path('course_edit',{'id': c.id})}}" class="btn btn-primary">Edit</a>
-								<a href="{{path('course_delete',{'id': c.id})}}" class="btn btn-warning">Delete</a>
+								<a href="{{path('course_delete',{'id': c.id})}}" class="btn btn-warning" onclick="return confirm('Are you sure to delete this course ?')">Delete</a>
 							</td>
 						{% endif %}
 

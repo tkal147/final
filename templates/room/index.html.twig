@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block title %}List Room
+{% endblock %}
+{% block body %}
+	<div class="container">
+		<h4>Room</h4>
+			<a class="btn btn-outline-primary" href="{{ path('room_add') }}">ADD New Room</a>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">Name</th>
+					<th scope="col">Location</th>
+					<th scope="col">Manage</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for r in rooms %}
+					<tr>
+						<td>{{r.name}}</td>
+						<td>{{r.location}}</td>
+							<td>
+								<a href="{{path('room_detail',{'id': r.id})}}" class="btn btn-info">Detail</a>
+								<a href="{{path('room_edit',{'id': r.id})}}" class="btn btn-primary">Edit</a>
+								<a href="{{path('room_delete',{'id': r.id})}}" class="btn btn-warning" onclick="return confirm('Are you sure to delete this room ?')">Delete</a>
+							</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

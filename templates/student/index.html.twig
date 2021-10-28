@@ -31,7 +31,7 @@
 							<td>
 								<a class="btn btn-info" href="{{ path('student_detail', {'id' : s.id }) }}">DETAIL</a>
 								<a class="btn btn-primary" href="{{ path('student_edit', {'id': s.id }) }}">EDIT</a>
-								<a class="btn btn-warning" href="{{ path('student_delete', {'id': s.id }) }}" onclick="return confirm('Are you sure to delete this author ?')">
+								<a class="btn btn-warning" href="{{ path('student_delete', {'id': s.id }) }}" onclick="return confirm('Are you sure to delete this student ?')">
 									DELETE</a>
 							</td>
 						{% endif %}

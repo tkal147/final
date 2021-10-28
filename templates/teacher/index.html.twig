@@ -35,7 +35,7 @@
 							<td>
 								<a href="{{path('teacher_detail',{'id': c.id})}}" class="btn btn-info">Detail</a>
 								<a href="{{path('teacher_edit',{'id': c.id})}}" class="btn btn-primary">Edit</a>
-								<a href="{{path('teacher_delete',{'id': c.id})}}" class="btn btn-warning">Delete</a>
+								<a href="{{path('teacher_delete',{'id': c.id})}}" class="btn btn-warning" onclick="return confirm('Are you sure to delete this teacher ?')">Delete</a>
 							</td>
 						{% endif %}
 

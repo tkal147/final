@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Room Detail
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h4 class="text-primary  text-center">Room Detail</h4>
+		<a class="btn btn-outline-primary" href="{{ path('room_index') }}">List Room</a>
+		<table class="table table-striped mt-3  text-center">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Location</th>
+					<th>Manage</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ room.name }}</td>
+
+					<td>{{ room.location }}</td>
+
+
+						<td>
+							<a class="btn btn-primary" href="{{ path('room_edit', {'id': room.id }) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('room_delete', {'id': room.id }) }}" onclick="return confirm('Are you sure to delete this room ?')">
+								DELETE</a>
+						</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

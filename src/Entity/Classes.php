@@ -34,6 +34,11 @@ class Classes
      */
     private $students;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Room::class, mappedBy="class", cascade={"persist", "remove"})
+     */
+    private $Room;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -94,6 +99,23 @@ class Classes
                 $student->setClasses(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRoom(): ?Room
+    {
+        return $this->Room;
+    }
+
+    public function setRoom(Room $Room): self
+    {
+        // set the owning side of the relation if necessary
+        if ($Room->getClass() !== $this) {
+            $Room->setClass($this);
+        }
+
+        $this->Room = $Room;
 
         return $this;
     }
