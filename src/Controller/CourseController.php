@@ -53,7 +53,7 @@ class CourseController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($course);
             $manager->flush();
-            $this->addFlash('Success', 'Student has been deleted successfully !');
+            $this->addFlash('Success', 'Course has been deleted successfully !');
         }
         return $this->redirectToRoute('student_index');
     }
@@ -93,7 +93,7 @@ class CourseController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($course);
             $manager->flush();
-            $this->addFlash('Success', "Add new course successfully");
+            $this->addFlash('Success', "Edit course successfully");
             return $this->redirectToRoute("course_index");
         }
         return $this->render(

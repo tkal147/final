@@ -93,7 +93,7 @@ class ClassesController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($classes);
             $manager->flush();
-            $this->addFlash('Success', "Add new classes successfully");
+            $this->addFlash('Success', "Update classes successfully");
             return $this->redirectToRoute("classes_index");
         }
         return $this->render(
